@@ -1,0 +1,63 @@
+<!-- Song List -->
+<div class="song-list">
+    <h3>Song List</h3>
+    <ul>
+      <li *ngFor="let song of songs">
+        <span>{{ song.nombre }} - {{ song.autor }} ({{ song.album }})</span>
+        <button (click)="selectsong = song">Edit</button>
+        <button (click)="delete(song.id)">Delete</button>
+      </li>
+    </ul>
+  </div>
+  
+  <!-- Add New Song Form -->
+  <div class="add-song">
+    <h3>Add New Song</h3>
+    <form (ngSubmit)="create(newSong)">
+      <div>
+        <label for="nombre">nombre:</label>
+        <input type="text" id="nombre" [(ngModel)]="newSong.nombre" name="nombre" required />
+      </div>
+      <div>
+        <label for="autor">autor:</label>
+        <input type="text" id="autor" [(ngModel)]="newSong.autor" name="autor" required />
+      </div>
+      <div>
+        <label for="album">Album:</label>
+        <input type="text" id="album" [(ngModel)]="newSong.album" name="album" required />
+      </div>
+      
+      <button type="submit">Add Song</button>
+    </form>
+  </div>
+  
+  <!-- Edit Song Form (visible when song is selected for editing) -->
+  <div class="edit-song" *ngIf="selectsong.id">
+    <h3>Edit Song</h3>
+    <form (ngSubmit)="update(selectsong.id, selectsong)">
+      <div>
+        <label for="edit-nombre">nombre:</label>
+        <input type="text" id="edit-nombre" [(ngModel)]="selectsong.nombre" name="nombre" required />
+      </div>
+      <div>
+        <label for="edit-autor">autor:</label>
+        <input type="text" id="edit-autor" [(ngModel)]="selectsong.autor" name="autor" required />
+      </div>
+      <div>
+        <label for="edit-album">Album:</label>
+        <input type="text" id="edit-album" [(ngModel)]="selectsong.album" name="album" required />
+      </div>
+      
+      <button type="submit">Update Song</button>
+    </form>
+  </div>
+  
+  <!-- View Song Details -->
+  <div *ngIf="selectsong.id">
+    <h3>Song Details</h3>
+    <p><strong>nombre:</strong> {{ selectsong.nombre }}</p>
+    <p><strong>autor:</strong> {{ selectsong.autor }}</p>
+    <p><strong>Album:</strong> {{ selectsong.album }}</p>
+
+  </div>
+  
