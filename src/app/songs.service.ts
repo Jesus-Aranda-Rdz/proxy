@@ -8,7 +8,7 @@ import { ApiResponse, Song } from './song'; // Adjust this import according to y
 })
 export class SongsService {
 
-  private apiUrl = 'http://3.139.104.28/api/songs';  // Adjust base URL if needed
+  private apiUrl = 'http://3.139.104.28:8082/songs';  // Adjust base URL if needed
 
   constructor(private http: HttpClient) { }
 
